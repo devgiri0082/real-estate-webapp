@@ -4,13 +4,10 @@ import Chart from './chart';
 
 
 export default async function Home() {
-  const totalBrokers = await totalActiveBrokers();
-  const brokersByCity = (await topActiveBrokersByCity());
-  const topBroker =  brokersByCity[0];
-  const changeByPercent = await changeInBrokersFromLastMonth();
-  const topChangeCity = await topCityByChangeInBroker();
-  const activeBrokerByMonth = await activeBrokersByMonth();
-  console.log({activeBrokerByMonth})
+  //use promise.all for the below functions
+  const response = await Promise.all([totalActiveBrokers(), topActiveBrokersByCity(), changeInBrokersFromLastMonth(), topCityByChangeInBroker(), activeBrokersByMonth()]);
+  const [totalBrokers, brokersByCity, changeByPercent, topChangeCity, activeBrokerByMonth] = response;
+  const topBroker = brokersByCity[0];
   return (
     <main className="px-40 py-8">
       <div className='mb-12'>

@@ -20,10 +20,18 @@ ChartJS.register(
   Legend
 );
 export default function Chart({dataset}: {dataset: number[]}) {
-  
   const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   const options = {
     responsive: true,
+    scale: {
+      y: {
+        beginAtZero: true,
+        min: 0,
+        ticks: {
+          stepSize: 5000
+        }
+      },
+    },
     plugins: {
       legend: {
         display: false,
@@ -43,6 +51,10 @@ export default function Chart({dataset}: {dataset: number[]}) {
       }
     ],
   };
-  
-  return <Line options={options} data={data} />;
+
+  return (
+    <div style={{ width: '70%', height: '50%' }}>
+      <Line options={options} data={data} />
+    </div>
+  )
 }

@@ -152,7 +152,13 @@ export async function activeBrokersByMonth(): Promise<number[]> {
   res.forEach((item) => {
     value[item.month! - 1] = item._count;
   });
-  return value;
+  let current = 0;;
+  const newArr = [];
+  while (value[current] > 0) {
+    newArr.push(value[current]);
+    current++;
+  }
+  return newArr;
 }
 
 
