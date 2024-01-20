@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
+import Header from './header'
+import Footer from './footer'
 
-const inter = Inter({ subsets: ['latin'] })
+const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,8 +17,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" dir='rtl'>
+      <body className={`${plusJakartaSans.className} flex flex-col min-h-screen`}>
+        <Header/>
+        <div className='flex-1'>
+          {children}
+        </div>
+        <Footer/>
+      </body>
     </html>
   )
 }
